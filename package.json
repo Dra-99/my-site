@@ -1,0 +1,27 @@
+{
+  "name": "blog-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -x npm run serve",
+    "serve": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "express-jwt": "^7.7.5",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "morgan": "~1.9.1",
+    "sequelize": "^6.25.0",
+    "svg-captcha": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
