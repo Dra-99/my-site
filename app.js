@@ -11,6 +11,7 @@ const md5 = require("md5")
 const adminRoute = require("./routes/admin")
 const captchaRouter = require("./routes/captcha")
 const homePageRouter = require("./routes/homePage")
+const uploadRouter = require("./routes/upload")
 const { ForbiddenError, handleOtherError } = require("./utils/errors")
 require("./init")
 
@@ -43,6 +44,7 @@ app.use(jwt({
 app.use('/api/admin', adminRoute);
 app.use("/api/captcha", captchaRouter)
 app.use("/api/homePage", homePageRouter)
+app.use("/api/upload", uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
