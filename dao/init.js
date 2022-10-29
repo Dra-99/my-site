@@ -1,5 +1,6 @@
 const adminModel = require("./models/adminModel");
 const homePageModal = require("./models/homePageModal")
+require("./models/blogTypeModal")
 const md5 = require("md5");
 const sequelize = require("./connectDB");
 
