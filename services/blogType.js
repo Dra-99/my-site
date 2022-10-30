@@ -1,5 +1,6 @@
 const validate = require("validate.js")
 const { addBlogType, deleteBlogTypeItem, updateBlogType, getBlogTypeById, getBlogTypeAll } = require("../dao/blogTypeDAO")
+const { deleteBlogType } = require("../dao/blogDAO")
 
 exports.addBlogTypeService = async (blogTypeInfo) => {
     const rules = {
@@ -26,7 +27,9 @@ exports.addBlogTypeService = async (blogTypeInfo) => {
 } 
 
 exports.deleteBlogTypeService = async (id) => {
-    return await deleteBlogTypeItem(id)
+    const data = await deleteBlogTypeItem(id)
+    await deleteBlogType(id);
+    return data;
 }
 
 exports.updateBlogTypeService = async (id, blogTypeInfo) => {

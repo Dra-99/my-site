@@ -1,18 +1,23 @@
 const adminModel = require("./models/adminModel");
 const homePageModal = require("./models/homePageModal")
-require("./models/blogTypeModal")
+const blogTypeModal = require("./models/blogTypeModal")
+const blogModal = require("./models/blogModal")
 const md5 = require("md5");
 const sequelize = require("./connectDB");
-
+ 
 (async () => {
-    await sequelize.sync({
+
+    blogTypeModal.hasMany(blogModal, { foreignKey: 'categoryId', targetKey: 'id' })
+    blogModal.belongsTo(blogTypeModal, { foreignKey: 'categoryId', targetKey: 'id', as: "category" })
+
+    sequelize.sync({
         alter: true
-    })
-    console.log("数据库同步完成")
+    }) 
+    console.log("数据库同步完成") 
     const adminCount = await adminModel.count();
     const homePageCount = await homePageModal.count();
-    if (!adminCount) {
-        await adminModel.create({
+    if (!adminCount) { 
+        await adminModel.create({ 
             loginId: "admin",
             loginPwd: md5("123456"),
             name: "超级管理员"

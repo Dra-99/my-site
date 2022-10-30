@@ -33,3 +33,9 @@ exports.getBlogTypeAll = async () => {
         ]
     })
 }
+
+exports.changeBlogTypeCount = async (id) => {
+    const data = await this.getBlogTypeById(id);
+    data.articleCount++;
+    data.save()
+}

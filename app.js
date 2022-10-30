@@ -13,6 +13,7 @@ const captchaRouter = require("./routes/captcha")
 const homePageRouter = require("./routes/homePage")
 const uploadRouter = require("./routes/upload")
 const blogTypeRouter = require("./routes/blogType")
+const blogRouter = require("./routes/blog")
 const { ForbiddenError, handleOtherError } = require("./utils/errors")
 require("./init")
 
@@ -47,6 +48,7 @@ app.use("/api/captcha", captchaRouter)
 app.use("/api/homePage", homePageRouter)
 app.use("/api/upload", uploadRouter);
 app.use("/api/blogType", blogTypeRouter)
+app.use('/api/blog', blogRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
