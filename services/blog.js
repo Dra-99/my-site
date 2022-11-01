@@ -1,6 +1,8 @@
 const validate = require("validate.js")
 const { getBlogTypeById, changeBlogTypeCount } = require("../dao/blogTypeDAO")
 const { addBlog, queryBlogByPage, editBlog, queryBlogById, deleteBlog } = require("../dao/blogDAO")
+const toc = require("markdown-toc")
+const handleTOC = require("../utils/handleTOC")
 
 validate.validators.categoryIdIsExist = async (value) => {
     if (!value) return;
@@ -15,10 +17,9 @@ validate.validators.categoryIdIsExist = async (value) => {
 }
 
 exports.addBlogService = async (blogInfo) => {
-    // 处理TOC
-    blogInfo.toc = JSON.stringify(["a", "b"]);
-    blogInfo.scanNumber = 0;
-    blogInfo.commentNumber = 0;
+    const newBlogInfo = handleTOC(blogInfo);
+    newBlogInfo.scanNumber = 0;
+    newBlogInfo.commentNumber = 0;
     const rules = {
         title: {
             presence: {
@@ -51,9 +52,9 @@ exports.addBlogService = async (blogInfo) => {
     }
 
     try {
-        await validate.async(blogInfo, rules);
-        const data = await addBlog(blogInfo)
-        const categoryId = blogInfo.categoryId;
+        await validate.async(newBlogInfo, rules);
+        const data = await addBlog(newBlogInfo)
+        const categoryId = newBlogInfo.categoryId;
         if (categoryId) {
             await changeBlogTypeCount(categoryId);
         }
@@ -70,9 +71,10 @@ exports.queryBlogByPageService = async (pagination) => {
 
 // 修改文章
 exports.editBlogService = async (blogInfo) => {
-    const data = await editBlog(blogInfo)
+    const newBlogInfo = handleTOC(blogInfo);
+    const data = await editBlog(newBlogInfo)
     if (data) {
-        return await queryBlogById(blogInfo.id);
+        return await queryBlogById(newBlogInfo.id);
     } else {
         return false
     }
