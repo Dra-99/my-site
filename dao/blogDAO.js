@@ -6,8 +6,8 @@ exports.addBlog = async (blogInfo) => {
 }
 
 const findBlogByPage = async (categoryId, pagination) => {
-    pagination.pageSize = pagination.pageSize || 10;
-    pagination.page = pagination.page || 1;
+    pagination.pageSize = +pagination.pageSize || 10;
+    pagination.page = +pagination.page || 1;
     const whereCondition = {};
     if (categoryId) {
         whereCondition.categoryId = categoryId;

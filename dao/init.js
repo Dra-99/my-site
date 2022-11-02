@@ -2,6 +2,7 @@ const adminModel = require("./models/adminModel");
 const homePageModal = require("./models/homePageModal")
 const blogTypeModal = require("./models/blogTypeModal")
 const blogModal = require("./models/blogModal")
+require("./models/projectModal")
 const md5 = require("md5");
 const sequelize = require("./connectDB");
  

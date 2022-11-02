@@ -14,6 +14,7 @@ const homePageRouter = require("./routes/homePage")
 const uploadRouter = require("./routes/upload")
 const blogTypeRouter = require("./routes/blogType")
 const blogRouter = require("./routes/blog")
+const projectRouter = require("./routes/project")
 const { ForbiddenError, handleOtherError } = require("./utils/errors")
 require("./init")
 
@@ -41,6 +42,15 @@ app.use(jwt({
 }, {
   url: "/api/homePage",
   method: "GET"
+}, {
+  url: "api/blog",
+  method: "GET"
+}, {
+  url: "/api/blogType",
+  method: "GET"
+}, {
+  url: "/api/project",
+  method: "GET"
 }]}))
 
 app.use('/api/admin', adminRoute);
@@ -49,6 +59,7 @@ app.use("/api/homePage", homePageRouter)
 app.use("/api/upload", uploadRouter);
 app.use("/api/blogType", blogTypeRouter)
 app.use('/api/blog', blogRouter)
+app.use("/api/project", projectRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
