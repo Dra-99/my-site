@@ -43,7 +43,7 @@ app.use(jwt({
   url: "/api/homePage",
   method: "GET"
 }, {
-  url: "api/blog",
+  url: "/api/blog",
   method: "GET"
 }, {
   url: "/api/blogType",

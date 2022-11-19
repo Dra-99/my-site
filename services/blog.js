@@ -20,6 +20,7 @@ exports.addBlogService = async (blogInfo) => {
     const newBlogInfo = handleTOC(blogInfo);
     newBlogInfo.scanNumber = 0;
     newBlogInfo.commentNumber = 0;
+    newBlogInfo.toc = JSON.stringify(newBlogInfo.toc)
     const rules = {
         title: {
             presence: {

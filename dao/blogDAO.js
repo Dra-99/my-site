@@ -9,7 +9,7 @@ const findBlogByPage = async (categoryId, pagination) => {
     pagination.pageSize = +pagination.pageSize || 10;
     pagination.page = +pagination.page || 1;
     const whereCondition = {};
-    if (categoryId) {
+    if (categoryId && +categoryId !== -1) {
         whereCondition.categoryId = categoryId;
     }
     return await blogModal.findAndCountAll({
